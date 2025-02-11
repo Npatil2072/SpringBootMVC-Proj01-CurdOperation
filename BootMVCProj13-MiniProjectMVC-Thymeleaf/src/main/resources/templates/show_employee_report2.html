@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Report</title>
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" 
+          rel="stylesheet" 
+          integrity="sha384-TQ7K3FvM6FOMlMMG93MoA8HtGomHv/JLZkN3xFnC7B45p5nJREgv2MMoJ2pNQF2H" 
+          crossorigin="anonymous">
+</head>
+
+<body>
+<div class="container">
+<h2>Welcome In the Spirng</h2>
+
+
+<h1 style="color: gray;">Employee</h1>
+
+	<h1 style="color: red; text-align: center;">Employees Report</h1>
+	
+<div th:if=${!empReport.empty}>
+	<table  class="table table-hover table-bordered table-striped" >    <!-- border="1" align="center" bgcolor="cyan" -->
+		<thead class="table-primary">   <!--  -->
+		<tr >
+			<th>empno</th>
+			<th>ename</th>
+			<th>job</th>
+			<th>salary</th>
+			<th>deptno</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr th:each="emp:${empReport}">   <!--  style="color: blue" -->
+			<td><span th:text="${emp.empno}"></span></td>
+			<td><span th:text="${emp.ename}"></span></td>
+			<td><span th:text="${emp.job}"></span></td>
+			<td><span th:text="${emp.sal}"></span></td>
+			<td><span th:text="${emp.deptno}"></span></td>
+			
+			<td>
+			<a th:href="@{/employee/edit(no=${emp.empno})}">Edit</a> 
+			<a th:href="@{/employee/delete(no=${emp.empno})}" onclick="return confirm('Do you wnat delete the Employee')">Delete</a>
+			</td>
+		</tr>
+        </tbody>
+	</table>
+</div>
+
+<button class="btn btn-primary">Test Button</button>
+
+
+<div th:if="${empReport.empty}">
+<h1 style="color: blue; text-align: center;">Employee Not Found</h1>
+</div>
+<h1 style="color: green; text-align: center " th:text="${resultMsg}"></h1>
+
+
+<h2 style="color: fuchsia; text-align: center;">
+	<a th:href="@{/employee/}">home</a>
+</h2>
+
+<h2 style="color: blue;text-align: center;">
+	<a th:href="@{/employee/register}">add Employee</a>
+</h2>
+
+</div>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" 
+            integrity="sha384-pbcCYT6RSc1AeBcGOeyGsQ9Au3gJ0e6VvtpAuUEG4jtJ8gX0RQKNDeo9bcvCmI9E" 
+            crossorigin="anonymous"></script>
+            
+</body>
+</html>
+
